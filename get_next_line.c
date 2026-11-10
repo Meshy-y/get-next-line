@@ -6,7 +6,7 @@
 /*   By: bsarkoez <bsarkoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/27 16:27:06 by bsarkoez          #+#    #+#             */
-/*   Updated: 2026/11/09 18:17:31 by bsarkoez         ###   ########.fr       */
+/*   Updated: 2026/11/10 16:51:39 by bsarkoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,42 +15,63 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+int	find(char *buff)
+{
+	int		i;
+	char	*f;
+
+	f = "\n";
+	i = 0;
+	while (buff[i])
+	{
+		if (buff[i] == *f)
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
 char	*get_next_line(int fd)
 {
-	char static	*line;
+	char static	*storage;
 	char		buffer[BUFFER_SIZE + 1];
 	char		*temp;
 	int			f;
 
-	line = malloc(sizeof(char) * 1);
+	if (!storage)
+	{
+		storage = malloc(sizeof(char) * 1);
+		if (!storage)
+			return (NULL);
+		storage[0] = 0;
+	}
 	f = 1;
 	while (f > 0)
 	{
-		f = read(fd, buffer, BUFFER_SIZE);
+		if (find (storage))
+		{
+			temp = ft_sub (storage, 0, find (storage));
+			if (!temp)
+				return (NULL);
+			ft_storage_clean_newline(storage, find(storage));
+			return (temp);
+		}
+		f = read(fd, buffer, (BUFFER_SIZE));
 		buffer[f] = 0;
-		line = ft_strjoin(line, buffer);
+		storage = ft_strjoin(storage, buffer);
+		if (!storage)
+			return (NULL);
 	}
-	return (line);
-	// printf("%s", buffer);
-	// return (NULL);
-	// while (read(fd, buffer, BUFFER_SIZE) != 0)
-	// {
-	// 	printf("X\n");
-	// 	line = buffer;
-	// }
-	// return (line);
+	if (storage[0] != 0 && f != -1)
+	{
+		temp = ft_sub (storage, 0, ft_strlen(storage));
+		if (!temp)
+			return (NULL);
+		storage[0] = 0;
+		return (temp);
+	}
+	return (NULL);
 }
-
-// char	line(char *temp, char *line)
-// {
-// 	char	*new;
-
-// 	new = ft_strjoin(temp, line);
-// 	free (temp);
-// 	free (line);
-// 	return (new);
-// }
-
 
 int	main(void)
 {
@@ -59,11 +80,22 @@ int	main(void)
 
 	fd = open("test.txt", O_RDONLY);
 	s = get_next_line(fd);
-	printf("%s", s);
-	// while (s)
-	// {
-	// 	s = get_next_line(fd);
-	// 	printf("%s", s);
-	// }
+	printf("%s\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("%s\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("%s\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("%s\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("%s\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("%s\n", s);
+	free(s);
 	return (0);
 }
