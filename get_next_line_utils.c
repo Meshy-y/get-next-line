@@ -6,7 +6,7 @@
 /*   By: bsarkoez <bsarkoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/27 16:27:12 by bsarkoez          #+#    #+#             */
-/*   Updated: 2026/11/10 16:57:49 by bsarkoez         ###   ########.fr       */
+/*   Updated: 2026/11/23 14:50:59 by bsarkoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ char	*ft_sub(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	s_len = ft_strlen(s);
 	if (start >= s_len)
-		return ("");
+		return (NULL);
 	if (len > s_len - start)
 		len = s_len - start;
 	subie = malloc(sizeof(char) * (len + 1));
 	if (!subie)
 		return (NULL);
-	memcpy (subie, s + start, len);
+	ft_memcpy (subie, s + start, len);
 	subie[len] = '\0';
 	return (subie);
 }
 
 size_t	ft_strlen(const char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
@@ -87,7 +87,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	lens2 = ft_strlen(s2);
 	res = malloc(sizeof (char) * (lens1 + lens2 + 1));
 	if (!res)
-		return (NULL);
+		return (free(s1), NULL);
 	ft_memcpy(res, s1, lens1 + 1);
 	free(s1);
 	ft_memcpy(res + lens1, s2, lens2 + 1);
