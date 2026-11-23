@@ -6,7 +6,7 @@
 /*   By: bsarkoez <bsarkoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/27 16:27:06 by bsarkoez          #+#    #+#             */
-/*   Updated: 2026/11/23 15:59:59 by bsarkoez         ###   ########.fr       */
+/*   Updated: 2026/11/23 17:02:47 by bsarkoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,57 +93,57 @@ char	*get_next_line(int fd)
 		return (get_new_line(storage[fd]));
 	return (get_end_file(&storage[fd]));
 }
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
+// #include <fcntl.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
-int	main(void)
-{
-	int 	fd1;
-	int 	fd2;
-	int 	fd3;
-	int 	fd4;
-	int 	fd5;
-	char	*s;
+// int	main(void)
+// {
+// 	int 	fd1;
+// 	int 	fd2;
+// 	int 	fd3;
+// 	int 	fd4;
+// 	int 	fd5;
+// 	char	*s;
 
-	fd1 = open("test.txt", O_RDONLY);
-	fd2 = open("test1.txt", O_RDONLY);
-	fd3 = open("test2.txt", O_RDONLY);
-	fd4 = open("test3.txt", O_RDONLY);
-	fd5 = open("test4.txt", O_RDONLY);
+// 	fd1 = open("test.txt", O_RDONLY);
+// 	fd2 = open("test1.txt", O_RDONLY);
+// 	fd3 = open("test2.txt", O_RDONLY);
+// 	fd4 = open("test3.txt", O_RDONLY);
+// 	fd5 = open("test4.txt", O_RDONLY);
 
-	s = get_next_line(fd1);
-	printf("fd1: %s\n", s);
-	free(s);
-	s = get_next_line(fd2);
-	printf("fd2: %s\n", s);
-	free(s);
-	s = get_next_line(fd3);
-	printf("fd3: %s\n", s);
-	free(s);
-	s = get_next_line(fd4);
-	printf("fd4: %s\n", s);
-	free(s);
-	s = get_next_line(fd5);
-	printf("fd5: %s\n", s);
-	free(s);
-	s = get_next_line(fd3);
-	printf("fd3: %s\n", s);
-	free(s);
-	s = get_next_line(fd1);
-	printf("fd1: %s\n", s);
-	free(s);
-	s = get_next_line(fd3);
-	printf("fd3: %s\n", s);
-	free(s);
-	s = get_next_line(fd5);
-	printf("fd5: %s\n", s);
-	free(s);
+// 	s = get_next_line(fd1);
+// 	printf("fd1: %s\n", s);
+// 	free(s);
+// 	s = get_next_line(fd2);
+// 	printf("fd2: %s\n", s);
+// 	free(s);
+// 	s = get_next_line(fd3);
+// 	printf("fd3: %s\n", s);
+// 	free(s);
+// 	s = get_next_line(fd4);
+// 	printf("fd4: %s\n", s);
+// 	free(s);
+// 	s = get_next_line(fd5);
+// 	printf("fd5: %s\n", s);
+// 	free(s);
+// 	s = get_next_line(fd3);
+// 	printf("fd3: %s\n", s);
+// 	free(s);
+// 	s = get_next_line(fd1);
+// 	printf("fd1: %s\n", s);
+// 	free(s);
+// 	s = get_next_line(fd3);
+// 	printf("fd3: %s\n", s);
+// 	free(s);
+// 	s = get_next_line(fd5);
+// 	printf("fd5: %s\n", s);
+// 	free(s);
 
-	close(fd1);
-	close(fd2);
-	close(fd3);
-	close(fd4);
-	close(fd5);
-	return (0);
-}
+// 	close(fd1);
+// 	close(fd2);
+// 	close(fd3);
+// 	close(fd4);
+// 	close(fd5);
+// 	return (0);
+// }

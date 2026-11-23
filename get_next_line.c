@@ -6,7 +6,7 @@
 /*   By: bsarkoez <bsarkoez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/27 16:27:06 by bsarkoez          #+#    #+#             */
-/*   Updated: 2026/11/23 15:42:03 by bsarkoez         ###   ########.fr       */
+/*   Updated: 2026/11/23 17:04:07 by bsarkoez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,18 +82,17 @@ static char	*read_storage(char *storage, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*storage[1024];
+	static char	*storage;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	storage[fd] = read_storage(storage, fd);
+	storage = read_storage(storage, fd);
 	if (!storage)
 		return (NULL);
 	if (find_newline(storage) >= 0)
 		return (get_new_line(storage));
 	return (get_end_file(&storage));
 }
-
 
 // #include <sys/stat.h>
 // #include <fcntl.h>
@@ -103,26 +102,17 @@ char	*get_next_line(int fd)
 // {
 // 	char	*s;
 // 	int		fd;
+// 	int		i = 0;
 
 // 	fd = open("test.txt", O_RDONLY);
-// 	s = get_next_line(fd);
-// 	printf("%s\n", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s\n", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s\n", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s\n", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s\n", s);
-// 	free(s);
-// 	s = get_next_line(fd);
-// 	printf("%s\n", s);
-// 	free(s);
+// 	while (i != 1)
+// 	{
+// 		s = get_next_line(fd);
+// 		printf("%s\n", s);
+// 		if (s == NULL)
+// 			i = 1;
+// 		free(s);
+// 	}
 // 	close (fd);
 // 	return (0);
 // }
